@@ -1,0 +1,40 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    long long t;
+    cin>>t;
+    while (t--){
+        long long n;
+        cin>>n;
+        vector<long long> store(n,0);
+        vector<long long> prefSum(n,0);
+        long long sum=0;
+        for (long long i=0;i<n;i++){
+            cin>>store[i];
+            sum=sum+store[i];
+            prefSum[i]=sum;
+        }
+        long long maxiDiff=0;
+        for (long long k=1;k<=n;k++){
+            if (n%k!=0){
+                continue;
+            }
+            long long mini=LLONG_MAX;
+            long long maxi=0;
+            for (long long i=0;i<n;i=i+k){//n,n/2,n/3...n/n 
+                long long u=prefSum[i-1];
+                if (i-1<0){
+                    u=0;
+                }
+                maxi=max(maxi,prefSum[i+k-1]-u);
+                mini=min(mini,prefSum[i+k-1]-u);
+            }
+            maxiDiff=max(maxiDiff,maxi-mini);
+        }
+        cout<<maxiDiff<<endl;
+
+        //T.C.:- O(nlogn)
+        //S.C.:- O(n)
+    }
+    return 0;
+}
