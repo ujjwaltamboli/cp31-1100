@@ -1,0 +1,35 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    int t;
+    cin>>t;
+    while (t--){
+        int n;
+        cin>>n;
+        vector<int> store(n,0);
+        for (int i=0;i<n;i++){
+            cin>>store[i];
+        }
+        
+        int sum=store[0];
+        int maxi=store[0];
+        int parity=abs(store[0])%2;
+
+        for (int i=1;i<n;i++){
+            parity=!parity;
+            if (abs(store[i])%2==parity){
+                sum=max(store[i], sum+store[i]);
+            }
+            else{
+                sum=store[i];
+                parity=abs(store[i])%2;
+            }
+            maxi=max(maxi, sum);
+        }
+        cout<<maxi<<endl;
+
+        //T.C.:- O(n);
+        //S.C.:- O(n);
+    }
+    return 0;
+}
