@@ -1,0 +1,27 @@
+
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    long long t;
+    cin>>t;
+    while (t--){
+        long long n,k,a,b;
+        cin>>n>>k>>a>>b;
+        vector<vector<long long>> coordinate(n, vector<long long> (2,0));
+        for (long long i=0;i<n;i++){//O(n)
+            cin>>coordinate[i][0];
+            cin>>coordinate[i][1];
+        }
+        long long mini=abs(coordinate[a-1][0]-coordinate[b-1][0])+abs(coordinate[a-1][1]-coordinate[b-1][1]);
+        long long mini1=1e18;
+        long long mini2=1e18;
+        for (long long i=0;i<k;i++){//O(k)
+            mini1=min(mini1, abs(coordinate[a-1][0]-coordinate[i][0])+abs(coordinate[a-1][1]-coordinate[i][1]));
+            mini2=min(mini2,abs(coordinate[b-1][0]-coordinate[i][0])+abs(coordinate[b-1][1]-coordinate[i][1]));
+        }
+        cout<<min(mini,mini1+mini2)<<endl;
+    }
+    //T.C.:- O(n+k);
+    //S.C.:- O(n*2);
+    return 0;
+}
