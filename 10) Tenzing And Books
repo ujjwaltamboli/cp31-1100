@@ -1,0 +1,53 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    int t;
+    cin>>t;
+    while (t--){
+        int n,x;
+        cin>>n>>x;
+        vector<int> a(n,0);
+        vector<int> b(n,0);
+        vector<int> c(n,0);
+        for (int i=0;i<n;i++){
+            cin>>a[i];
+        }
+        for (int i=0;i<n;i++){
+            cin>>b[i];
+        }
+        for (int i=0;i<n;i++){
+            cin>>c[i];
+        }
+        int sum=0;
+        for (int i=0;i<n;i++){
+            if ((x|a[i])>x){
+                break;
+            }
+            sum=sum|a[i];
+        }
+        for (int i=0;i<n;i++){
+            if ((x|b[i])>x){
+                break;
+            }
+            sum=sum|b[i];
+        }
+        for (int i=0;i<n;i++){
+            if ((x|c[i])>x){
+                break;
+            }
+            sum=sum|c[i];
+        }
+        if (sum==x){
+            cout<<"Yes"<<endl;
+        }
+        else{
+            cout<<"No"<<endl;
+        }
+
+        //T.C.:- O(3n);
+        //S.C.:- O(3n);
+
+
+    }
+    return 0;
+}
