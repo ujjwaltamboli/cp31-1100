@@ -1,0 +1,52 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    int mod=1e9+7;
+    long long t;
+    cin>>t;
+    while (t--){
+        long long n;
+        cin>>n;
+        vector<long long> a(n,0);
+        for (long long i=0;i<n;i++){
+            cin>>a[i];
+        }
+        vector<long long> b(n,0);
+        for (long long i=0;i<n;i++){
+            cin>>b[i];
+        }
+        sort(a.begin(), a.end());
+        sort(b.begin(), b.end());
+        bool flag=true;
+        for (long long i=0;i<n;i++){
+            if (a[i]<=b[i]){
+                flag=false;
+                break;
+            }
+        }
+        if (!flag){
+            cout<<0<<endl;
+            continue;
+        }
+        long long i=0;
+        vector<long long> ways(n,n);
+        for (long long j=0;j<n;j++){
+            if (b[j]>=a[i]){
+                ways[i]=j;
+                i++;
+                j--;
+            }
+        }
+        long long prob=1;
+        for (long long i=0;i<n;i++){
+            ways[i]=ways[i]-i;
+            prob=(prob*ways[i])%mod;
+        }
+        cout<<prob<<endl;
+
+        //T.C.:- O(nlogn)
+        //S.C.:- O(n);
+
+    }
+    return 0;
+}
