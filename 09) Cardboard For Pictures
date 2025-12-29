@@ -1,0 +1,41 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    long long t;
+    cin>>t;
+    while (t--){
+        long long n,c;
+        cin>>n>>c;
+        vector<long long> store(n,0);
+        for (long long i=0;i<n;i++){
+            cin>>store[i];
+        }
+
+        long long ini=1;
+        long long fin=1e9/2;
+        long long ans=-1;
+        while (ini<=fin){//logn
+            long long w=ini+(fin-ini)/2;
+            long long areaRemaining=c;
+            for (long long i=0;i<n;i++){//O(n)
+                long long a=2*w+store[i];
+                areaRemaining=areaRemaining-a*a;
+                if (areaRemaining<0){
+                    break;
+                }
+            }
+            if (areaRemaining<0){
+                fin=w-1;
+            }
+            else{
+                ini=w+1;
+                ans=w;
+            }
+        }
+        cout<<ans<<endl;
+
+        //T.C.:- O(nlogn)
+        //S.C.:- O(n)
+    }
+    return 0;
+}
