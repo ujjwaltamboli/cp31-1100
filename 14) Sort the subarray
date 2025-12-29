@@ -1,0 +1,39 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    int t;
+    cin>>t;
+    while (t--){
+        int n;
+        cin>>n;
+        vector<int> store(n,0);
+        for (int i=0;i<n;i++){
+            cin>>store[i];
+        }
+
+        vector<int> store2(n,0);
+        for (int i=0;i<n;i++){
+            cin>>store2[i];
+        }
+        int l=n;
+        int r=-1;
+        for (int i=0;i<n;i++){
+            if (store2[i]!=store[i]){
+                l=min(l,i);
+                r=max(r,i);
+            }
+        }
+        while (l-1>=0 && store2[l-1]<=store2[l]){
+            l--;
+        }
+        while (r+1<n && store2[r+1]>=store2[r]){
+            r++;
+        }
+
+        cout<<l+1<<" "<<r+1<<endl;
+
+        //T.C.:- O(n);
+        //S.C.:- O(n);
+    }
+    return 0;
+}
