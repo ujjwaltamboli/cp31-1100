@@ -1,0 +1,29 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    long long t;
+    cin>>t;
+    while (t--){
+        long long n;
+        cin>>n;
+        vector<long long> store(n,0);
+        long long sum=0;
+        for (long long i=0;i<n;i++){
+            cin>>store[i];
+            sum=sum+store[i];
+        }
+        long long gcd=0;
+        long long maxi=0;
+        long long sum2=0;
+        for (long long i=0;i<n-1;i++){//O(n)
+            sum2=sum2+store[i];
+            gcd=__gcd(sum2, sum-sum2); //log(max(a,b))=log(2*pow(10,14))=14.3
+            maxi=max(maxi,gcd);
+        }
+        cout<<maxi<<endl;
+        //T.C.:- O(nlogn);
+        //S.C.:- O(n)
+    }
+
+    return 0;
+}
