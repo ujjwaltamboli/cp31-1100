@@ -1,0 +1,36 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    long long t;
+    cin>>t;
+    while (t--){
+        long long n,k;
+        cin>>n>>k;
+        vector<long long> store(n,0);
+        for (long long i=0;i<n;i++){
+            cin>>store[i];
+        }
+
+        map<long long,bool> present;
+        for (long long i=0;i<n;i++){
+            present[store[i]]=true;
+        }
+        bool flag=false;
+        for (long long i=0;i<n;i++){
+            if (present[store[i]-k]){
+                flag=true;
+            }
+        }
+
+        if (!flag){
+            cout<<"No"<<endl;
+        }
+        else{
+            cout<<"Yes"<<endl;
+        }
+
+        //T.C.:- (nlogn);
+        //S.C.:- O(n);
+    }
+    return 0;
+}
