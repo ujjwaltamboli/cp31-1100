@@ -1,0 +1,37 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int n, q;
+    cin >> n >> q;
+    vector<int> store(n, 0);
+    vector<int> query(q, 0);
+    vector<int> ind(50+1,n+1);
+    for (int i = 0; i < n; i++)
+    {
+        cin >> store[i];
+    }
+    for (int i = 0; i < q; i++)
+    {
+        cin >> query[i];
+    }
+
+    for (int i=n-1;i>=0;i--){
+        ind[store[i]]=i+1;
+    }
+
+    for (auto q:query){
+        cout<<ind[q]<<" ";
+        for (int i=1;i<=50;i++){
+            if (ind[i]<ind[q]){
+                ind[i]++;
+            }
+        }
+        ind[q]=1;
+    }
+
+    //T.C.:- O(51*51);
+    //S.C.:- O(n+q);
+
+    return 0;
+}
