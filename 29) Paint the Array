@@ -1,0 +1,53 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    long long t;
+    cin>>t;
+    while (t--){
+        long long n;
+        cin>>n;
+        vector<long long> store(n,0);
+        for (long long i=0;i<n;i++){
+            cin>>store[i];
+        }
+        long long gcd1=0;
+        for (long long i=0;i<n;i=i+2){
+            gcd1=__gcd(gcd1,store[i]);//O(log(max(a,b)));=O(logn);
+        }
+        bool flag1=true;
+        for (long long i=1;i<n;i=i+2){
+            if (store[i]%gcd1==0){
+                flag1=false;
+            }
+        }
+
+        if (flag1){
+            cout<<gcd1<<endl;
+            continue;
+        }
+
+        long long gcd2=0;
+        for (long long i=1;i<n;i=i+2){
+            gcd2=__gcd(gcd2,store[i]);
+        }
+        bool flag2=true;
+        for (long long i=0;i<n;i=i+2){
+            if (store[i]%gcd2==0){
+                flag2=false;
+            }
+        }
+
+        if (flag2){
+            cout<<gcd2<<endl;
+            continue;
+        }
+
+        cout<<0<<endl; //Not able to achieve beautiful array 
+
+        //T.C.:- O(nloga)
+        //S.C.:- O(n)
+
+
+    }
+    return 0;
+}
