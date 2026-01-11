@@ -1,1 +1,41 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    long long t;
+    cin>>t;
+    while (t--){
+        string s;
+        cin>>s;
+        long long count=0;
+        long long n=s.length();
+        long long maxi=0;
+        bool flag=true;
+        for (long long i=0;i<n;i++){
+            if (s[i]=='1'){
+                count++;
+            }
+            else{
+                count=0;
+            }
+            maxi=max(maxi,count);
+            if (i==n-1 && flag){
+                i=-1;
+                flag=false;
+            }
+        }
+        if (maxi==2*n){
+            cout<<n*n<<endl;
+            continue;
+        }
+        if (maxi==1){
+            cout<<1<<endl;
+            continue;
+        }
+        maxi=maxi+1;
+        cout<<(maxi/2)*(maxi-maxi/2)<<endl;
 
+        //T.C.:- O(n);
+        //S.C.:- O(n);
+    }
+    return 0;
+}
