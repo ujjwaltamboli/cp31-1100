@@ -1,0 +1,19 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    int mod=1e9+7;
+    int inv6=166666668;
+    long long t;
+    cin>>t;
+    while (t--){
+        long long n;
+        cin>>n;
+        
+        long long a=n%mod;
+        long long b=(n+1)%mod;
+        long long c=(4*n-1)%mod;
+        long long ans=(((((a*b)%mod)*c)%mod)*(inv6%mod))%mod;
+        cout<<(ans*2022)%mod<<endl;
+    }
+    return 0;
+}
