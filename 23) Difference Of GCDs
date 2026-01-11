@@ -1,0 +1,40 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    long long t;
+    cin>>t;
+    while (t--){
+        long long n,l,r;
+        cin>>n>>l>>r;
+        vector<long long> store(n,0);
+        for (long long i=1;i<=n;i++){//O(n)
+            long long rem=l%i;
+            if (rem==0){
+                store[i-1]=l;
+            }
+            else{
+                store[i-1]=l+(i-rem);
+            }
+        }
+        bool flag=true;
+        for (long long i=0;i<n;i++){//O(n)
+            if (store[i]>r){
+                flag=false;
+            }
+        }
+
+        if (!flag){
+            cout<<"No"<<endl;
+        }
+        else{
+            cout<<"Yes"<<endl;
+            for (long long i=0;i<n;i++){//O(n)
+                cout<<store[i]<<" ";
+            }
+            cout<<endl;
+        }
+        //T.C.:-O(n)
+        //S.C.:- O(n)
+    }
+    return 0;
+}
