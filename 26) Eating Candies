@@ -1,0 +1,42 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    int t;
+    cin>>t;
+    while (t--){
+        int n;
+        cin>>n;
+        vector<int> store(n,0);
+        for (int i=0;i<n;i++){
+            cin>>store[i];
+        }
+
+        vector<int> left(n,0);
+        int sum=0;
+        for (int i=0;i<n;i++){
+            sum=sum+store[i];
+            left[i]=sum;
+        }
+
+        map<int,int> ind;
+        vector<int> right(n,0);
+        sum=0;
+        for (int i=n-1;i>=0;i--){
+            sum=sum+store[i];
+            right[i]=sum;
+            ind[sum]=i;
+        }
+        int maxi=0;
+        for (int i=0;i<n;i++){
+            if (ind[left[i]]>i){
+                maxi=max(maxi,i+1+n-ind[left[i]]);
+            }
+        }
+
+        cout<<maxi<<endl;
+    }
+
+    //T.C.:- O(nlogn);
+    //S.C.:- O(n);
+    return 0;
+}
